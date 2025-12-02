@@ -2,6 +2,6 @@ package com.nametag.classloader;
 
 public class MyLogic {
     public String execute() {
-        return "Hello from updated module!---2";
+        return "Hello from updated module test 3";
     }
 }
