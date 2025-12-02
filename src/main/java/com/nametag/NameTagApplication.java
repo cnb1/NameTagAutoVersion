@@ -1,9 +1,12 @@
-package com.example.nametag;
+package com.nametag;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 @SpringBootApplication
+@EnableScheduling
 public class NameTagApplication {
 
 	public static void main(String[] args) {
