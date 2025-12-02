@@ -24,10 +24,10 @@ public class UpdateController {
 
         try {
             // 1. Pull latest code
-            Git.open(new File("./dynamic/repo")).pull().call();
+            Git.open(new File("/Users/connorblack/dev/NameTagAutoVersion/")).pull().call();
 
             // 2. Build the new module.jar
-            Runtime.getRuntime().exec("./dynamic/repo/mvnw -q package").waitFor();
+//            Runtime.getRuntime().exec("/Users/connorblack/dev/NameTagAutoVersion/mvnw -q package").waitFor();
 
             // 3. Reload classes
             manager.loadModule();
@@ -40,7 +40,7 @@ public class UpdateController {
 
     @GetMapping("/run")
     public Object runUpdatedLogic() throws Exception {
-        return manager.invoke("com.example.MyLogic", "execute");
+        return manager.invoke("com.nametag.classloader.MyLogic", "execute");
     }
 
 }
