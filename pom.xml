@@ -8,10 +8,10 @@
 		<version>3.2.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>nametag</artifactId>
+	<groupId>com.nametag</groupId>
+	<artifactId>zookeeper</artifactId>
 	<version>1.0.1-SNAPSHOT</version>
-	<name>NameTagAutoVersion</name>
+	<name>zookeeper</name>
 	<description>Auto update application</description>
 	<properties>
 		<java.version>17</java.version>
