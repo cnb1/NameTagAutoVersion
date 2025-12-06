@@ -1,6 +1,7 @@
 package com.nametag.classloader;
 
 import org.eclipse.jgit.api.Git;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,29 +19,27 @@ public class UpdateController {
         this.manager = manager;
     }
 
-    @PostMapping("/apply")
+    @Scheduled(cron = "*/10 * * * * *")
     public String applyUpdate() throws Exception {
+
         manager.pauseAll();
 
         try {
             // 1. Pull latest code
             Git.open(new File("/Users/connorblack/dev/NameTagAutoVersion/")).pull().call();
 
-            // 2. Build the new module.jar
-//            Runtime.getRuntime().exec("/Users/connorblack/dev/NameTagAutoVersion/mvnw -q package").waitFor();
-
-            // 3. Reload classes
             manager.loadModule();
         } finally {
             manager.resumeAll();
         }
 
+        runUpdatedLogic();
         return "Update applied!";
     }
 
-    @GetMapping("/run")
-    public Object runUpdatedLogic() throws Exception {
-        return manager.invoke("com.nametag.classloader.MyLogic", "execute");
+    private void runUpdatedLogic() throws Exception {
+        MyLogic myLogic = new MyLogic();
+        System.out.println(myLogic.execute());
     }
 
 }
